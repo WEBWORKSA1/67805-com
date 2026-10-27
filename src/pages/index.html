@@ -1,0 +1,122 @@
+<!--{"title":"67805.com — Build the AI stack your business can actually run","desc":"Free AI tools directory, stack builder, ROI calculator and plain-English guides that help small businesses choose, set up and measure AI tools.","nav":"home","scripts":["tools-data.js","app.js"],"faq":[["Is 67805.com free to use?","Yes. Every tool, guide and calculator is free. The site is funded by advertising, clearly labeled sponsorships and reader support."],["Do you get paid to recommend tools?","Editorial picks are never sold. Sponsored listings are always labeled Sponsored and never change our editors’ picks or rankings."],["What is an AI stack?","A small set of AI tools, one per job, that work together: an assistant for daily drafting, plus tools for support, sales, content, admin or automation depending on your goals."],["How much time can AI save a small business?","It depends on how much repetitive work you have. Our estimates use 2 to 6 hours per person per week per area, and our ROI calculator shows the math so you can plug in your own numbers."]]}-->
+<section class="hero"><div class="wrap">
+<div>
+<h1>Build the AI stack your business can actually run.</h1>
+<p class="lead">Pick what eats your week. We stack the right tools, estimate the hours you get back, and show you where to start. No hype, no sign-up.</p>
+<form id="heroSearch" action="tools.html" role="search" class="field" style="display:flex;gap:8px;max-width:520px;margin-top:22px">
+<label for="hq" class="hide">Search AI tools</label>
+<input id="hq" name="q" type="search" placeholder="Search tools: chatbot, bookkeeping, video…">
+<button class="btn" type="submit">Search</button>
+</form>
+<p class="small mb0">What do you want AI to handle first? Tap any that apply.</p>
+<div class="goals" id="heroGoals"></div>
+<div class="cta"><a class="btn" id="heroBuild" href="stack-builder.html">Build my full stack</a><a class="btn ghost" href="blueprint.html">Get a free blueprint</a></div>
+</div>
+<div class="stackbox" aria-live="polite">
+<div class="meter"><div><span>Estimated time back</span><br><b><span id="heroHrs">0</span> h</b> <span>per person, per week</span></div><div style="text-align:right"><span>Worth about</span><br><strong id="heroVal" style="font-size:1.3rem">$0</strong><br><span>a month at $35/h</span></div></div>
+<div class="layers" id="heroStack"></div>
+<p class="small mb0" style="margin-top:12px">Category averages from our planning model. <a href="roi-calculator.html">Run your own numbers</a>.</p>
+</div>
+</div></section>
+
+<section class="sec tight"><div class="wrap">
+<div class="stats">
+<div><b data-toolcount>75</b><span>AI tools reviewed and sorted</span></div>
+<div><b data-catcount>14</b><span>business categories</span></div>
+<div><b>30</b><span>copy-ready business prompts</span></div>
+<div><b>$0</b><span>to use every tool on this site</span></div>
+</div>
+</div></section>
+
+<section class="sec" aria-labelledby="methodH"><div class="wrap">
+<div class="sec-head"><div><h2 id="methodH">The 5-step way to add AI without the mess</h2></div><p>The same order works for a one-person shop and a 50-person team. Skip a step and the tools end up unused.</p></div>
+<ol class="method">
+<li><h3>Map the week</h3><p>List repetitive tasks and the hours they take. That list is your opportunity.</p></li>
+<li><h3>Pick one bottleneck</h3><p>Choose the task with the most hours and the lowest risk if AI gets it slightly wrong.</p></li>
+<li><h3>Choose one tool</h3><p>Match the job to a category, then trial one tool for 14 days. Not five.</p></li>
+<li><h3>Write the playbook</h3><p>Save the prompts, rules and checks so anyone on the team gets the same result.</p></li>
+<li><h3>Measure, then stack</h3><p>Compare hours before and after. Keep what pays, then add the next layer.</p></li>
+</ol>
+<p class="mt"><a href="guides/five-step-ai-automation-method.html">Read the full method with examples</a></p>
+</div></section>
+
+<section class="sec alt" aria-labelledby="catsH"><div class="wrap">
+<div class="sec-head"><div><h2 id="catsH">Browse tools by the job they do</h2></div><p>Each drawer holds tools we sorted by pricing model, skill needed and the kind of business they fit best.</p></div>
+<div class="grid g4" id="drawers"></div>
+</div></section>
+
+<section class="sec" aria-labelledby="featH"><div class="wrap">
+<div class="sec-head"><div><h2 id="featH">Editors’ picks to start with</h2></div><p>Reliable first choices in each area. Save tools to your shortlist or tick two to compare them side by side.</p></div>
+<div class="grid g4" id="featuredTools"></div>
+<p class="mt"><a class="btn ghost" href="tools.html">See all <span data-toolcount>75</span> tools</a></p>
+</div></section>
+
+<section class="sec tight" aria-labelledby="leadH"><div class="wrap">
+<div class="leadbox">
+<div class="pitch">
+<h2 id="leadH">Get a free AI blueprint for your business</h2>
+<p>Tell us how your business runs. Within 2 business days you get a written plan:</p>
+<ul><li>The 3 tasks to automate first, ranked by hours saved</li><li>The exact tools for your budget, with setup notes</li><li>Prompts and a 30-day rollout checklist</li><li>An optional call with a vetted implementation partner, only if you ask</li></ul>
+<p class="small">Free. No obligation. We never sell your details.</p>
+</div>
+<div class="form">
+<form data-form="Blueprint request (homepage)" data-ok="Request received. Your blueprint arrives within 2 business days." novalidate>
+<label class="hp" aria-hidden="true">Leave empty<input name="hp_name" tabindex="-1" autocomplete="off"></label>
+<div class="two"><div class="field"><label for="hn">Your name</label><input id="hn" name="name" required autocomplete="name"></div>
+<div class="field"><label for="he">Work email</label><input id="he" name="email" type="email" required autocomplete="email"></div></div>
+<div class="two"><div class="field"><label for="hb">Business type</label><select id="hb" name="business_type" required><option value="">Choose one</option><option>Local service business</option><option>Online store</option><option>Agency or consultancy</option><option>Creator or media</option><option>Software or startup</option><option>Professional practice</option><option>Other</option></select></div>
+<div class="field"><label for="hs">Team size</label><select id="hs" name="team_size" required><option value="">Choose one</option><option>Just me</option><option>2–10</option><option>11–50</option><option>51+</option></select></div></div>
+<div class="field"><label for="ht">What takes the most time each week?</label><textarea id="ht" name="biggest_time_sink" rows="3" required placeholder="e.g. answering the same customer emails, writing quotes, posting on social"></textarea></div>
+<label class="check"><input type="checkbox" name="consent" value="yes" required> I agree that 67805.com may contact me about my blueprint. See the privacy policy.</label>
+<button class="btn" type="submit" style="margin-top:12px;width:100%">Send my free blueprint</button>
+<p class="form-msg" aria-live="polite"></p>
+</form>
+<p class="small mt" style="margin-top:12px">Want more detail? Use the <a href="blueprint.html">full blueprint form</a>.</p>
+</div>
+</div>
+</div></section>
+
+<section class="sec" aria-labelledby="calcH"><div class="wrap">
+<div class="sec-head"><div><h2 id="calcH">Know the payoff before you pay</h2></div></div>
+<div class="grid g3">
+<a class="guide" href="roi-calculator.html"><span class="tag sig">Calculator</span><h3>AI ROI calculator</h3><p>Hours saved, net monthly savings and payback period, with the math shown and a shareable link.</p></a>
+<a class="guide" href="ai-readiness.html"><span class="tag sig">Assessment</span><h3>AI readiness score</h3><p>Eight questions, a score out of 100 and the three areas to fix before you spend on tools.</p></a>
+<a class="guide" href="compare.html"><span class="tag sig">Compare</span><h3>Side-by-side tool compare</h3><p>Put up to three tools next to each other: pricing model, skill needed and best fit.</p></a>
+</div>
+</div></section>
+
+<section class="sec alt" aria-labelledby="guidesH"><div class="wrap">
+<div class="sec-head"><div><h2 id="guidesH">Guides written for owners, not engineers</h2></div><p><a href="guides.html">All guides</a></p></div>
+<div class="grid g3">
+<a class="guide" href="guides/how-to-build-an-ai-stack.html"><span class="tag">Strategy, 9 min read</span><h3>How to build an AI stack for a small business</h3><p>The layers, the order and the budget, with three example stacks.</p></a>
+<a class="guide" href="guides/measure-ai-roi.html"><span class="tag">Finance, 8 min read</span><h3>How to measure AI ROI without fooling yourself</h3><p>Baselines, hidden costs and the one metric that matters.</p></a>
+<a class="guide" href="guides/ai-customer-support-playbook.html"><span class="tag">Support, 9 min read</span><h3>The AI customer support playbook</h3><p>Automate the repeat questions and keep humans on the hard ones.</p></a>
+</div>
+</div></section>
+
+<section class="sec" aria-labelledby="vidH"><div class="wrap">
+<div class="sec-head"><div><h2 id="vidH">Understand the tech in 20 minutes</h2></div><p><a href="videos.html">More videos</a></p></div>
+<div class="grid g3">
+<div><button class="video" data-yt="LPZh9BOjkQs" aria-label="Play: Large Language Models explained briefly by 3Blue1Brown"><span class="play"></span></button><div class="vcap"><strong>Large language models explained briefly</strong><span class="small">3Blue1Brown</span></div></div>
+<div><button class="video" data-yt="EWvNQjAaOHw" aria-label="Play: How I use LLMs by Andrej Karpathy"><span class="play"></span></button><div class="vcap"><strong>How I use LLMs</strong><span class="small">Andrej Karpathy</span></div></div>
+<div><button class="video" data-yt="zjkBMFhNj_g" aria-label="Play: Intro to Large Language Models by Andrej Karpathy"><span class="play"></span></button><div class="vcap"><strong>Intro to large language models</strong><span class="small">Andrej Karpathy</span></div></div>
+</div>
+</div></section>
+
+<section class="sec alt" aria-labelledby="joinH"><div class="wrap">
+<h2 id="joinH">Get involved</h2>
+<div class="grid g4 mt">
+<a class="drawer" href="contests.html"><span class="code">Prize</span><h3>Workflow Challenge</h3><p>Share the AI workflow that saved you the most time. Monthly prizes.</p></a>
+<a class="drawer" href="list-your-tool.html"><span class="code">List</span><h3>List your AI tool</h3><p>Free review queue, or a featured placement for faster reach.</p></a>
+<a class="drawer" href="advertise.html"><span class="code">Ads</span><h3>Sponsor 67805</h3><p>Newsletter, category and guide sponsorships for AI and SaaS brands.</p></a>
+<a class="drawer" href="careers.html"><span class="code">Jobs</span><h3>Write or build with us</h3><p>Paid contributor, editor and developer roles. Remote.</p></a>
+</div>
+</div></section>
+
+<section class="sec" aria-labelledby="faqH"><div class="wrap prose">
+<h2 id="faqH">Questions people ask first</h2>
+<details><summary>Is 67805.com free to use?</summary><p>Yes. Every tool, guide and calculator is free. The site is funded by advertising, clearly labeled sponsorships and <a href="support.html">reader support</a>.</p></details>
+<details><summary>Do you get paid to recommend tools?</summary><p>Editorial picks are never sold. Sponsored listings are always labeled Sponsored and never change our editors’ picks or rankings. Details on <a href="how-we-make-money.html">how we make money</a>.</p></details>
+<details><summary>What is an AI stack?</summary><p>A small set of AI tools, one per job, that work together: an assistant for daily drafting, plus tools for support, sales, content, admin or automation depending on your goals.</p></details>
+<details><summary>How much time can AI save a small business?</summary><p>It depends on how much repetitive work you have. Our estimates use 2 to 6 hours per person per week per area, and the <a href="roi-calculator.html">ROI calculator</a> shows the math so you can plug in your own numbers.</p></details>
+</div></section>

@@ -1,0 +1,17 @@
+<!--{"title":"AI Tools Directory for Small Business","desc":"Search and filter 75 AI tools for small business by category, pricing model and skill level. Save a shortlist and compare tools side by side.","nav":"tools","scripts":["tools-data.js","app.js"],"crumbs":[["AI tools directory",null]]}-->
+<header class="pagehead"><div class="wrap">
+<h1>AI tools directory</h1>
+<p class="lead"><span data-toolcount>75</span> tools for real business jobs, sorted into <span data-catcount>14</span> categories. Filter by price model, save a shortlist, tick up to three to compare.</p>
+</div></header>
+<section class="sec tight"><div class="wrap">
+<div class="filters" role="search">
+<div class="q"><label for="fq">Search</label><input id="fq" type="search" placeholder="Try: invoices, chatbot, podcast"></div>
+<div><label for="fcat">Category</label><select id="fcat"></select></div>
+<div><label for="fprice">Pricing model</label><select id="fprice"><option value="">Any</option><option>Free</option><option>Freemium</option><option>Paid</option><option>Open source</option></select></div>
+<div><label for="fsort">Sort</label><select id="fsort"><option value="pick">Editors’ picks first</option><option value="az">A to Z</option><option value="free">Free plans first</option></select></div>
+</div>
+<p class="small" aria-live="polite"><span id="fcount"></span>. Your shortlist: <strong id="favCount">0</strong> saved (stored only in this browser).</p>
+<div class="grid g3" id="directory"></div>
+<div class="panel mt"><h3>How we sort and describe tools</h3><p class="mb0">Descriptions are written by our editors. Pricing models change often, so always confirm current plans on the vendor’s site. Editors’ picks are chosen for reliability and ease of setup and are never sold. Listings marked Sponsored are paid placements. <a href="how-we-make-money.html">How we make money</a> · <a href="list-your-tool.html">Submit a tool</a></p></div>
+</div></section>
+<div class="sticky" id="cmpBar" role="region" aria-label="Compare selection"><p>Compare: <strong id="cmpNames"></strong></p><a class="btn sig sm" id="cmpGo" href="compare.html">Compare now</a></div>
