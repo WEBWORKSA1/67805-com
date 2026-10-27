@@ -6,6 +6,9 @@ Run:  python3 src/build.py   (writes HTML into the repo root and /guides)
 """
 import json, os, re, datetime, html
 
+_jd = json.dumps
+json.dumps = lambda o, **k: _jd(o, ensure_ascii=False, **k)  # keep real characters in JSON-LD
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DOMAIN = "https://67805.com"
 ADSENSE = '<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6620975821265271" crossorigin="anonymous"></script>'
