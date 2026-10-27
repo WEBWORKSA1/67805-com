@@ -9,11 +9,14 @@ Free AI tools directory, stack builder, ROI calculator, readiness score, prompt 
 
 ## Edit and rebuild
 
-Pages live in `src/pages/*.html` and guides in `src/guides/*.html`; each starts with a JSON header comment. Shared layout is in `src/build.py`.
+Pages live in `src/pages/*.html`; guide content lives in `src/tools/guides_a.py` and `guides_b.py`, which write `src/guides/*.html`. Every page source starts with a JSON header comment. Shared layout is in `src/build.py`.
 
 ```bash
+python3 src/tools/guides_a.py && python3 src/tools/guides_b.py   # writes src/guides/
 python3 src/build.py   # regenerates the HTML in the repo root, /guides and sitemap.xml
 ```
+
+Commit the regenerated HTML: GitHub Pages serves the repo root as-is.
 
 Tool data: `assets/js/tools-data.js`. Prompts: `assets/js/prompts-data.js`. Interactive logic: `assets/js/app.js`. Site-wide behavior and form routing: `assets/js/main.js`.
 
