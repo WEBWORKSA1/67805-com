@@ -1,0 +1,37 @@
+<!--{"title":"AI ROI Calculator: Hours Saved, Savings and Payback","desc":"Estimate the hours, monthly savings, payback period and first-year return of automating work with AI tools. Shows the full calculation.","nav":"roi","scripts":["app.js"],"crumbs":[["ROI calculator",null]],"faq":[["How is AI ROI calculated?","Monthly hours saved equal people times repetitive hours per week times the share automated times 4.33 weeks. Multiply by the hourly cost, subtract monthly tool costs, and compare with one-time setup costs to get payback and first-year return."],["What share of work can AI automate?","For most small-business tasks a realistic starting point is 20 to 40 percent of the repetitive hours. Use 50 percent or more only for highly repetitive, rules-based work you have already tested."]]}-->
+<header class="pagehead"><div class="wrap">
+<h1>AI ROI calculator</h1>
+<p class="lead">How many hours, how many dollars and how fast it pays back. All math runs in your browser and is shown in full below.</p>
+</div></header>
+<section class="sec tight"><div class="wrap split">
+<form id="roiForm" class="panel" onsubmit="return false">
+<div class="two"><div class="field"><label for="people">People doing the work</label><input id="people" name="people" type="number" min="1" value="3"></div>
+<div class="field"><label for="hours">Repetitive hours per person per week</label><input id="hours" name="hours" type="number" min="0" value="10"></div></div>
+<div class="field"><label for="pct">Share of that work AI can take: <strong id="pctOut">30%</strong></label><input id="pct" name="pct" type="range" min="5" max="80" step="5" value="30"></div>
+<div class="two"><div class="field"><label for="rateR">Loaded hourly cost (USD)</label><input id="rateR" name="rate" type="number" min="1" value="35"></div>
+<div class="field"><label for="tools">AI tool costs per month (USD)</label><input id="tools" name="tools" type="number" min="0" value="120"></div></div>
+<div class="two"><div class="field"><label for="setup">Setup and training hours</label><input id="setup" name="setup" type="number" min="0" value="20"></div>
+<div class="field"><label for="once">One-off costs, e.g. a consultant (USD)</label><input id="once" name="once" type="number" min="0" value="0"></div></div>
+<p class="small mb0">Loaded cost means wage plus taxes and benefits. A common rule of thumb is wage × 1.25 to 1.4.</p>
+</form>
+<div>
+<div class="result" style="margin-top:0" aria-live="polite">
+<p class="small mb0">Net savings per month</p><div class="big" id="rNet">$0</div>
+<div class="kv"><div><b id="rHours">0</b><span>hours saved / month</span></div><div><b id="rGross">$0</b><span>gross value / month</span></div><div><b id="rPay">—</b><span>payback period</span></div><div><b id="rYear">$0</b><span>first-year net gain</span></div><div><b id="rRoi">—</b><span>first-year ROI</span></div><div><b>4.33</b><span>weeks per month used</span></div></div>
+<h3 class="mt" style="margin-top:18px">The math</h3><p id="rWork" class="small"></p>
+<label for="roiLink">Share or save these numbers</label>
+<div style="display:flex;gap:8px"><input id="roiLink" readonly><button class="btn sm" type="button" data-copy="roiLink">Copy link</button></div>
+</div>
+<div class="panel ink mt"><h3>Want a partner to deliver these savings?</h3><p>Request a free blueprint and we will match the plan to your numbers.</p><a class="btn sig" href="blueprint.html?from=roi">Get my blueprint</a></div>
+</div>
+</div></section>
+<section class="sec tight"><div class="wrap prose">
+<h2>How to use this calculator well</h2>
+<p>Start with honest inputs. Track the repetitive work for one normal week before guessing: replying to the same questions, copying data between apps, writing first drafts, formatting reports. Most teams overestimate how much AI will remove and underestimate the setup time, so the defaults here are deliberately conservative: 30% of repetitive work automated and 20 hours to set up and train.</p>
+<p>Use the loaded hourly cost, not just the wage. Saved hours only become savings if they go to work that earns money or replaces paid time, such as overtime, contractor hours or a hire you no longer need yet. If the saved time just disappears into the week, count a lower value.</p>
+<h3>Worked example</h3>
+<p>Three people each spend 10 hours a week on repetitive tasks. Automating 30% of that saves 3 × 10 × 0.30 × 4.33 = 39 hours a month. At $35 an hour that is $1,364 of gross value. Subtract $120 in tool subscriptions and the net is about $1,244 a month. Setup takes 20 hours, or $700, so payback comes in well under a month.</p>
+<h3>What this does not include</h3>
+<ul><li>Revenue gains, such as faster replies converting more leads. Treat those as upside.</li><li>Quality risk. Budget review time for anything customer-facing.</li><li>Price changes. Re-check tool pricing every renewal.</li></ul>
+<p>Read the full guide: <a href="guides/measure-ai-roi.html">How to measure AI ROI without fooling yourself</a>.</p>
+</div></section>

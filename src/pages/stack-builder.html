@@ -1,0 +1,64 @@
+<!--{"title":"AI Stack Builder: Get Your Personal AI Tool Stack","desc":"Answer five questions and get an AI tool stack matched to your business type, team size, goals and budget, with estimated hours saved per month.","nav":"stack","scripts":["tools-data.js","app.js"],"crumbs":[["Stack builder",null]]}-->
+<header class="pagehead"><div class="wrap">
+<h1>AI stack builder</h1>
+<p class="lead">Five questions. You get a layered tool stack for your business, your budget and your comfort with tech, plus the hours it should give back.</p>
+</div></header>
+<section class="sec tight"><div class="wrap split">
+<form id="stackForm" class="panel" novalidate>
+<fieldset><legend>1. What kind of business are you?</legend><div class="opts">
+<label class="opt"><input type="radio" name="biz" value="solo" required checked><span>Solo founder</span></label>
+<label class="opt"><input type="radio" name="biz" value="local"><span>Local service</span></label>
+<label class="opt"><input type="radio" name="biz" value="ecom"><span>Online store</span></label>
+<label class="opt"><input type="radio" name="biz" value="agency"><span>Agency or consultancy</span></label>
+<label class="opt"><input type="radio" name="biz" value="creator"><span>Creator or media</span></label>
+<label class="opt"><input type="radio" name="biz" value="saas"><span>Software or startup</span></label>
+<label class="opt"><input type="radio" name="biz" value="pro"><span>Professional practice</span></label>
+</div></fieldset>
+<fieldset><legend>2. How many people will use it?</legend><div class="opts">
+<label class="opt"><input type="radio" name="team" value="1" checked><span>Just me</span></label>
+<label class="opt"><input type="radio" name="team" value="2-10"><span>2–10</span></label>
+<label class="opt"><input type="radio" name="team" value="11-50"><span>11–50</span></label>
+<label class="opt"><input type="radio" name="team" value="51+"><span>51+</span></label>
+</div></fieldset>
+<fieldset><legend>3. What should AI handle? Pick all that apply.</legend><div class="opts">
+<label class="opt"><input type="checkbox" name="goals" value="support"><span>Customer questions</span></label>
+<label class="opt"><input type="checkbox" name="goals" value="sales"><span>Leads and sales</span></label>
+<label class="opt"><input type="checkbox" name="goals" value="write"><span>Writing and email</span></label>
+<label class="opt"><input type="checkbox" name="goals" value="mkt"><span>SEO and social</span></label>
+<label class="opt"><input type="checkbox" name="goals" value="design"><span>Graphics</span></label>
+<label class="opt"><input type="checkbox" name="goals" value="video"><span>Video and audio</span></label>
+<label class="opt"><input type="checkbox" name="goals" value="meet"><span>Meetings and planning</span></label>
+<label class="opt"><input type="checkbox" name="goals" value="fin"><span>Bookkeeping and admin</span></label>
+<label class="opt"><input type="checkbox" name="goals" value="auto"><span>Connecting apps</span></label>
+<label class="opt"><input type="checkbox" name="goals" value="web"><span>Website or app</span></label>
+<label class="opt"><input type="checkbox" name="goals" value="research"><span>Research and data</span></label>
+<label class="opt"><input type="checkbox" name="goals" value="hr"><span>Hiring</span></label>
+<label class="opt"><input type="checkbox" name="goals" value="docs"><span>Contracts and documents</span></label>
+</div></fieldset>
+<fieldset><legend>4. Monthly software budget for AI</legend><div class="opts">
+<label class="opt"><input type="radio" name="budget" value="free"><span>Free plans only</span></label>
+<label class="opt"><input type="radio" name="budget" value="low" checked><span>Up to $100</span></label>
+<label class="opt"><input type="radio" name="budget" value="mid"><span>$100–500</span></label>
+<label class="opt"><input type="radio" name="budget" value="high"><span>$500+</span></label>
+</div></fieldset>
+<fieldset><legend>5. How hands-on with tech are you?</legend><div class="opts">
+<label class="opt"><input type="radio" name="lvl" value="0" checked><span>No-code only</span></label>
+<label class="opt"><input type="radio" name="lvl" value="1"><span>Happy to configure</span></label>
+<label class="opt"><input type="radio" name="lvl" value="2"><span>Technical</span></label>
+</div></fieldset>
+<div class="field"><label for="rate">Value of one hour of your team’s time (USD)</label><input id="rate" name="rate" type="number" min="5" max="500" value="40"></div>
+<button class="btn" type="submit" style="width:100%">Build my stack</button>
+</form>
+<div>
+<div id="stackOut"><div class="panel"><h2 style="font-size:1.4rem">How the stack is built</h2><p>Every stack starts with an AI assistant as the base layer. Each goal you pick adds one layer with up to two tools that match your business type, budget and skill level. Hours saved come from category averages multiplied by team size.</p><p class="mb0">Nothing you enter here is stored or sent unless you ask us to email the result.</p></div></div>
+<div id="emailStack" class="panel mt hide">
+<h3>Email me this stack and the setup checklist</h3>
+<form id="emailStackForm" data-form="Stack builder result" data-ok="Sent. Check your inbox within 2 business days for the checklist." novalidate>
+<label class="hp" aria-hidden="true">Leave empty<input name="hp_name" tabindex="-1" autocomplete="off"></label>
+<div class="two"><div class="field"><label for="esn">Name</label><input id="esn" name="name" required></div><div class="field"><label for="ese">Email</label><input id="ese" name="email" type="email" required></div></div>
+<label class="check"><input type="checkbox" name="wants_help" value="yes"> I would like help setting this up (a vetted partner may contact me)</label>
+<label class="check"><input type="checkbox" name="consent" value="yes" required> I agree to be contacted about this request.</label>
+<button class="btn" type="submit" style="margin-top:10px">Email my stack</button><p class="form-msg" aria-live="polite"></p>
+</form></div>
+</div>
+</div></section>
