@@ -5,6 +5,11 @@
   var C=window.CATS||{},T=window.TOOLS||[];
   function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
   function money(n){return '$'+Math.round(n).toLocaleString('en-US')}
+  /* Paid placements (t.s) are always labeled Sponsored, listed first and get a UTM-tagged link. Submitted free listings (t.ugc) get rel="ugc". */
+  function nm(t){return t.n+(t.s?' (Sponsored)':'')}
+  function href(t){var u=/^https:\/\//.test(t.u)?t.u:'#';return t.s&&u!=='#'?u+(u.indexOf('?')<0?'?':'&')+'utm_source=67805.com&utm_medium=referral&utm_campaign=featured':u}
+  function rel(t){return t.s?'sponsored nofollow noopener':t.ugc?'nofollow ugc noopener':'noopener nofollow'}
+  function logo(t){return t.logo&&/^assets\/img\/[\w\/-]+\.(png|svg|webp|jpg)$/.test(t.logo)?'<img src="'+t.logo+'" alt="" width="28" height="28" loading="lazy" style="vertical-align:middle;margin-right:8px;border-radius:4px">':''}
   function pick(cat,opt){
     opt=opt||{};
     var list=T.filter(function(t){return t.c===cat});
@@ -33,7 +38,7 @@
       var hrs=3;
       Object.keys(on).forEach(function(k){
         var t=pick(k)[0],c=C[k];hrs+=c.h;
-        html+='<div class="layer" style="--c:'+c.c+'"><span class="tag">'+c.code+'</span><div><strong>'+esc(c.n)+'</strong><br><small>Start with '+esc(t.n)+'</small></div><span class="hrs">+'+c.h+' h</span></div>';
+        html+='<div class="layer" style="--c:'+c.c+'"><span class="tag">'+c.code+'</span><div><strong>'+esc(c.n)+'</strong><br><small>Start with '+esc(nm(t))+'</small></div><span class="hrs">+'+c.h+' h</span></div>';
       });
       hero.innerHTML=html;
       $('#heroHrs').textContent=hrs;
@@ -68,11 +73,11 @@
 
   function card(t){
     var c=C[t.c],fav=saved.indexOf(t.n)>-1;
-    return '<article class="tool'+(t.f?' featured':'')+'"><header><h3>'+esc(t.n)+'</h3><span class="tag">'+c.code+'</span></header>'+
-      '<p>'+esc(t.d)+'</p><div class="row"><span class="tag">'+esc(c.n)+'</span><span class="tag mint">'+esc(t.p)+'</span>'+(t.f?'<span class="tag sig">Editors’ pick</span>':'')+'</div>'+
+    return '<article class="tool'+(t.f?' featured':'')+'"><header><h3>'+logo(t)+esc(t.n)+'</h3><span class="tag">'+c.code+'</span></header>'+
+      '<p>'+esc(t.d)+'</p>'+(t.s&&t.x?'<p>'+esc(t.x)+'</p>':'')+'<div class="row">'+(t.s?'<span class="tag">Sponsored</span>':'')+'<span class="tag">'+esc(c.n)+'</span><span class="tag mint">'+esc(t.p)+'</span>'+(t.f?'<span class="tag sig">Editors’ pick</span>':'')+'</div>'+
       '<div class="acts"><button class="vote" type="button" data-fav="'+esc(t.n)+'" aria-pressed="'+fav+'">'+(fav?'Saved':'Save')+'</button>'+
       '<label class="cmp"><input type="checkbox" data-cmp="'+esc(t.n)+'"> Compare</label>'+
-      '<a class="btn sm ghost" href="'+esc(t.u)+'" target="_blank" rel="'+(t.ugc?'nofollow ugc noopener':'noopener nofollow')+'" aria-label="Visit '+esc(t.n)+' website (opens in new tab)">Visit site</a></div></article>';
+      '<a class="btn sm ghost" href="'+esc(href(t))+'" target="_blank" rel="'+rel(t)+'" aria-label="Visit '+esc(t.n)+' website (opens in new tab)">Visit site</a></div></article>';
   }
   document.addEventListener('click',function(e){
     var b=e.target.closest('[data-fav]');if(!b)return;
@@ -86,6 +91,7 @@
   var dir=$('#directory');
   if(dir){
     var q=$('#fq'),cat=$('#fcat'),pr=$('#fprice'),so=$('#fsort'),cnt=$('#fcount'),cmpBar=$('#cmpBar'),sel=[];
+    var ban=document.createElement('div');dir.parentNode.insertBefore(ban,dir);
     cat.innerHTML='<option value="">All categories</option>'+Object.keys(C).map(function(k){return '<option value="'+k+'">'+esc(C[k].n)+'</option>'}).join('')+'<option value="_saved">My shortlist</option>';
     var P=new URLSearchParams(location.search);
     if(P.get('q'))q.value=P.get('q');if(P.get('cat'))cat.value=P.get('cat');
@@ -100,6 +106,9 @@
       if(so.value==='az')list.sort(function(a,b){return a.n.localeCompare(b.n)});
       else if(so.value==='free')list.sort(function(a,b){return (a.p==='Paid')-(b.p==='Paid')});
       else list.sort(function(a,b){return (b.f||0)-(a.f||0)});
+      list.sort(function(a,b){return (b.s||0)-(a.s||0)});
+      var sp=cat.value&&C[cat.value]&&C[cat.value].sp;
+      ban.innerHTML=sp?'<div class="panel" style="margin-bottom:16px;padding:16px"><span class="tag">Sponsored</span> <strong>'+esc(sp.n)+'</strong> '+esc(sp.d)+' <a class="btn sm ghost" href="'+esc(href({s:1,u:sp.u}))+'" target="_blank" rel="sponsored nofollow noopener">Visit site</a></div>':'';
       cnt.textContent=list.length+' of '+T.length+' tools';
       dir.innerHTML=list.length?list.map(card).join(''):'<div class="panel"><h3>No tools match those filters</h3><p>Clear the search box or pick “All categories”. Know a tool we should list? <a href="list-your-tool.html">Submit it here</a>.</p></div>';
       $$('[data-cmp]',dir).forEach(function(c){c.checked=sel.indexOf(c.getAttribute('data-cmp'))>-1});
@@ -123,7 +132,7 @@
   if(cmp){
     var sels=$$('select',cmp.parentNode).filter(function(s){return s.hasAttribute('data-slot')});
     var opts='<option value="">Choose a tool</option>'+Object.keys(C).map(function(k){
-      return '<optgroup label="'+esc(C[k].n)+'">'+T.filter(function(t){return t.c===k}).map(function(t){return '<option>'+esc(t.n)+'</option>'}).join('')+'</optgroup>';
+      return '<optgroup label="'+esc(C[k].n)+'">'+T.filter(function(t){return t.c===k}).map(function(t){return '<option value="'+esc(t.n)+'">'+esc(nm(t))+'</option>'}).join('')+'</optgroup>';
     }).join('');
     sels.forEach(function(s){s.innerHTML=opts});
     var pre=(new URLSearchParams(location.search).get('t')||'ChatGPT|Claude|Gemini').split('|');
@@ -131,8 +140,8 @@
     function draw(){
       var chosen=sels.map(function(s){return T.filter(function(t){return t.n===s.value})[0]}).filter(Boolean);
       if(!chosen.length){cmp.innerHTML='<p>Pick at least one tool above to see it here.</p>';return}
-      var rows=[['Category',function(t){return C[t.c].n}],['Pricing model',function(t){return t.p}],['What it does',function(t){return t.d}],['Best for',function(t){return t.b.map(function(x){return BIZ[x]}).join(', ')}],['Skill needed',function(t){return ['No-code','Some setup','Technical'][t.l]}],['Est. hours saved per person / week',function(t){return C[t.c].h+' h (category average, our estimate)'}],['Website',function(t){return '<a href="'+esc(t.u)+'" target="_blank" rel="'+(t.ugc?'nofollow ugc noopener':'noopener nofollow')+'">'+esc(t.u.replace(/^https?:\/\//,''))+'</a>'}]];
-      cmp.innerHTML='<table><thead><tr><th scope="col">Feature</th>'+chosen.map(function(t){return '<th scope="col">'+esc(t.n)+'</th>'}).join('')+'</tr></thead><tbody>'+
+      var rows=[['Category',function(t){return C[t.c].n}],['Pricing model',function(t){return t.p}],['What it does',function(t){return t.d}],['Best for',function(t){return t.b.map(function(x){return BIZ[x]}).join(', ')}],['Skill needed',function(t){return ['No-code','Some setup','Technical'][t.l]}],['Est. hours saved per person / week',function(t){return C[t.c].h+' h (category average, our estimate)'}],['Website',function(t){return '<a href="'+esc(href(t))+'" target="_blank" rel="'+rel(t)+'">'+esc(t.u.replace(/^https?:\/\//,''))+'</a>'}]];
+      cmp.innerHTML='<table><thead><tr><th scope="col">Feature</th>'+chosen.map(function(t){return '<th scope="col">'+esc(nm(t))+'</th>'}).join('')+'</tr></thead><tbody>'+
         rows.map(function(r){return '<tr><th scope="row">'+r[0]+'</th>'+chosen.map(function(t){var v=r[1](t);return '<td>'+(r[0]==='Website'?v:esc(v))+'</td>'}).join('')+'</tr>'}).join('')+'</tbody></table>';
     }
     sels.forEach(function(s){s.addEventListener('change',draw)});draw();
@@ -156,7 +165,7 @@
         var list=pick(g,{free:budget==='free',lvl:lvl,biz:biz}).slice(0,2);
         if(!list.length)list=pick(g).slice(0,1);
         var h=C[g].h*tf;hrs+=h;
-        rows.push({cat:C[g].n,tools:list.map(function(t){return t.n}).join(' or '),why:list[0].d,h:h,p:list.map(function(t){return t.p}).filter(function(v,i,a){return a.indexOf(v)===i}).join(' / ')});
+        rows.push({cat:C[g].n,tools:list.map(nm).join(' or '),why:list[0].d,h:h,p:list.map(function(t){return t.p}).filter(function(v,i,a){return a.indexOf(v)===i}).join(' / ')});
       });
       var month=hrs*4.33,val=month*rate;
       var spend={free:'$0',low:'up to $100',mid:'$100–500',high:'$500+'}[budget];

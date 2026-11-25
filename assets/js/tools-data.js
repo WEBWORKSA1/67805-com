@@ -1,5 +1,9 @@
 /* 67805.com tool index. Pricing model is the vendor's general model (Free / Freemium / Paid / Open source).
-   Plans change often: always confirm current pricing on the vendor's own site. Names are trademarks of their owners. */
+   Plans change often: always confirm current pricing on the vendor's own site. Names are trademarks of their owners.
+   Optional fields: ugc:1 = listing came from a free submission (link gets rel="ugc"); s:1 = paid Featured listing
+   (labeled Sponsored, listed first, UTM-tagged link), with x = extended description and logo = 'assets/img/...' file.
+   A Category sponsor banner goes on its category as sp:{n:'Name',u:'https://...',d:'One sentence.'}.
+   Page tool counts are filled from this file by src/build.py: rebuild after adding or removing a tool. */
 window.CATS={
   assist:{n:'AI assistants',code:'AS',h:3,d:'General chat assistants for drafting, analysis and everyday questions.',c:'#2346C9'},
   write:{n:'Writing & content',code:'WR',h:3,d:'Copy, editing, tone and long-form content production.',c:'#7A4FD0'},
@@ -77,7 +81,7 @@ window.TOOLS=[
  {n:'Xero',c:'fin',p:'Paid',u:'https://www.xero.com',d:'Cloud accounting with bank feeds and automation.',b:['local','team','ecom'],l:0},
  {n:'Ramp',c:'fin',p:'Freemium',u:'https://ramp.com',d:'Corporate cards and spend management with AI controls.',b:['team','saas'],l:0},
  {n:'Dext',c:'fin',p:'Paid',u:'https://dext.com',d:'Captures receipts and invoices into your books.',b:['local','pro'],l:0},
- {n:'AI Calculators',c:'fin',p:'Free',u:'https://aicalculators.xyz',d:'Calculators that estimate LLM API costs, prompt-caching savings, AI ROI, VRAM needs, RAG token budgets and AI video costs.',b:['saas'],l:0,ugc:1},
+ {n:'AI Calculators',c:'fin',p:'Free',u:'https://aicalculators.xyz',d:'Calculators that estimate LLM API costs, prompt-caching savings, AI ROI, VRAM needs, RAG token budgets and AI video costs.',b:['saas','team'],l:0,ugc:1},
  {n:'Framer',c:'web',p:'Freemium',u:'https://www.framer.com',d:'Design-grade websites with AI page generation.',b:['saas','agency','creator'],l:0},
  {n:'Wix',c:'web',p:'Freemium',u:'https://www.wix.com',d:'Website builder with an AI site creator and booking tools.',b:['local','solo','ecom'],l:0},
  {n:'Durable',c:'web',p:'Freemium',u:'https://durable.co',d:'Generates a small-business website in under a minute.',b:['local','solo'],l:0},
