@@ -14,6 +14,15 @@ DOMAIN = "https://67805.com"
 ADSENSE = '<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6620975821265271" crossorigin="anonymous"></script>'
 TODAY = datetime.date.today().isoformat()
 
+def tool_count():
+    """Number of tools in assets/js/tools-data.js; page sources use {TOOL_COUNT} for it."""
+    data = open(os.path.join(ROOT, "assets", "js", "tools-data.js"), encoding="utf-8").read()
+    n = len(re.findall(r"^\s*\{n:'", data, re.M))
+    if not n: raise SystemExit("No tools found in assets/js/tools-data.js")
+    return str(n)
+
+TOOL_COUNT = tool_count()
+
 NAV = [("tools", "tools.html", "AI tools"), ("stack", "stack-builder.html", "Stack builder"),
        ("roi", "roi-calculator.html", "ROI"), ("prompts", "prompts.html", "Prompts"),
        ("guides", "guides.html", "Guides"), ("videos", "videos.html", "Videos")]
@@ -117,7 +126,7 @@ def crumbs(meta, p):
     return '<nav class="crumbs wrap" aria-label="Breadcrumb">' + " / ".join(parts) + "</nav>"
 
 def render(src, out_rel, prefix):
-    raw = open(src, encoding="utf-8").read()
+    raw = open(src, encoding="utf-8").read().replace("{TOOL_COUNT}", TOOL_COUNT)
     m = re.match(r"<!--(\{.*?\})-->\s*", raw, re.S)
     meta = json.loads(m.group(1)); body = raw[m.end():]
     meta["_path"] = out_rel
