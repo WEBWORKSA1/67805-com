@@ -77,6 +77,7 @@ window.TOOLS=[
  {n:'Xero',c:'fin',p:'Paid',u:'https://www.xero.com',d:'Cloud accounting with bank feeds and automation.',b:['local','team','ecom'],l:0},
  {n:'Ramp',c:'fin',p:'Freemium',u:'https://ramp.com',d:'Corporate cards and spend management with AI controls.',b:['team','saas'],l:0},
  {n:'Dext',c:'fin',p:'Paid',u:'https://dext.com',d:'Captures receipts and invoices into your books.',b:['local','pro'],l:0},
+ {n:'AI Calculators',c:'fin',p:'Free',u:'https://aicalculators.xyz',d:'Calculators that estimate LLM API costs, prompt-caching savings, AI ROI, VRAM needs, RAG token budgets and AI video costs.',b:['saas'],l:0,ugc:1},
  {n:'Framer',c:'web',p:'Freemium',u:'https://www.framer.com',d:'Design-grade websites with AI page generation.',b:['saas','agency','creator'],l:0},
  {n:'Wix',c:'web',p:'Freemium',u:'https://www.wix.com',d:'Website builder with an AI site creator and booking tools.',b:['local','solo','ecom'],l:0},
  {n:'Durable',c:'web',p:'Freemium',u:'https://durable.co',d:'Generates a small-business website in under a minute.',b:['local','solo'],l:0},

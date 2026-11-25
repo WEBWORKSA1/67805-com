@@ -69,10 +69,10 @@
   function card(t){
     var c=C[t.c],fav=saved.indexOf(t.n)>-1;
     return '<article class="tool'+(t.f?' featured':'')+'"><header><h3>'+esc(t.n)+'</h3><span class="tag">'+c.code+'</span></header>'+
-      '<p>'+esc(t.d)+'</p><div class="row"><span class="tag">'+esc(c.n)+'</span><span class="tag mint">'+t.p+'</span>'+(t.f?'<span class="tag sig">Editors’ pick</span>':'')+'</div>'+
+      '<p>'+esc(t.d)+'</p><div class="row"><span class="tag">'+esc(c.n)+'</span><span class="tag mint">'+esc(t.p)+'</span>'+(t.f?'<span class="tag sig">Editors’ pick</span>':'')+'</div>'+
       '<div class="acts"><button class="vote" type="button" data-fav="'+esc(t.n)+'" aria-pressed="'+fav+'">'+(fav?'Saved':'Save')+'</button>'+
       '<label class="cmp"><input type="checkbox" data-cmp="'+esc(t.n)+'"> Compare</label>'+
-      '<a class="btn sm ghost" href="'+t.u+'" target="_blank" rel="noopener nofollow" aria-label="Visit '+esc(t.n)+' website (opens in new tab)">Visit site</a></div></article>';
+      '<a class="btn sm ghost" href="'+esc(t.u)+'" target="_blank" rel="'+(t.ugc?'nofollow ugc noopener':'noopener nofollow')+'" aria-label="Visit '+esc(t.n)+' website (opens in new tab)">Visit site</a></div></article>';
   }
   document.addEventListener('click',function(e){
     var b=e.target.closest('[data-fav]');if(!b)return;
@@ -131,7 +131,7 @@
     function draw(){
       var chosen=sels.map(function(s){return T.filter(function(t){return t.n===s.value})[0]}).filter(Boolean);
       if(!chosen.length){cmp.innerHTML='<p>Pick at least one tool above to see it here.</p>';return}
-      var rows=[['Category',function(t){return C[t.c].n}],['Pricing model',function(t){return t.p}],['What it does',function(t){return t.d}],['Best for',function(t){return t.b.map(function(x){return BIZ[x]}).join(', ')}],['Skill needed',function(t){return ['No-code','Some setup','Technical'][t.l]}],['Est. hours saved per person / week',function(t){return C[t.c].h+' h (category average, our estimate)'}],['Website',function(t){return '<a href="'+t.u+'" target="_blank" rel="noopener nofollow">'+esc(t.u.replace(/^https?:\/\//,''))+'</a>'}]];
+      var rows=[['Category',function(t){return C[t.c].n}],['Pricing model',function(t){return t.p}],['What it does',function(t){return t.d}],['Best for',function(t){return t.b.map(function(x){return BIZ[x]}).join(', ')}],['Skill needed',function(t){return ['No-code','Some setup','Technical'][t.l]}],['Est. hours saved per person / week',function(t){return C[t.c].h+' h (category average, our estimate)'}],['Website',function(t){return '<a href="'+esc(t.u)+'" target="_blank" rel="'+(t.ugc?'nofollow ugc noopener':'noopener nofollow')+'">'+esc(t.u.replace(/^https?:\/\//,''))+'</a>'}]];
       cmp.innerHTML='<table><thead><tr><th scope="col">Feature</th>'+chosen.map(function(t){return '<th scope="col">'+esc(t.n)+'</th>'}).join('')+'</tr></thead><tbody>'+
         rows.map(function(r){return '<tr><th scope="row">'+r[0]+'</th>'+chosen.map(function(t){var v=r[1](t);return '<td>'+(r[0]==='Website'?v:esc(v))+'</td>'}).join('')+'</tr>'}).join('')+'</tbody></table>';
     }
